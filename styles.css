@@ -1,0 +1,177 @@
+﻿:root {
+  color-scheme: dark;
+  --pink-1: #fff3fb;
+  --pink-2: #ffb9df;
+  --pink-3: #ff6fba;
+  --pink-4: #ff3195;
+  --gold: #ffd86e;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 50% 78%, rgba(255, 65, 156, 0.08), transparent 35%),
+    radial-gradient(circle at 18% 24%, rgba(255, 226, 148, 0.07), transparent 22%),
+    radial-gradient(circle at 82% 26%, rgba(95, 170, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, #02020b 0%, #05000a 48%, #000 100%);
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.message-wrap {
+  position: absolute;
+  top: clamp(34px, 7.6vh, 110px);
+  left: 50%;
+  z-index: 3;
+  width: min(94vw, 1480px);
+  text-align: center;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: floatText 4.8s ease-in-out infinite;
+}
+
+.message {
+  margin: 0;
+  font-size: clamp(34px, 6.6vw, 112px);
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(90deg, var(--pink-1), var(--pink-2), var(--pink-3), var(--pink-4), var(--pink-2), var(--pink-1));
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 96, 178, 0.78))
+    drop-shadow(0 0 26px rgba(255, 72, 158, 0.42))
+    drop-shadow(0 0 52px rgba(255, 214, 240, 0.24));
+  animation: shimmer 4.4s linear infinite, heartbeat 2.6s ease-in-out infinite;
+}
+
+.subtitle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  margin-top: clamp(12px, 2.2vh, 24px);
+  padding: 0.62em 1.2em;
+  border: 1px solid rgba(255, 197, 226, 0.42);
+  border-radius: 999px;
+  color: rgba(255, 244, 250, 0.92);
+  background: rgba(255, 85, 170, 0.1);
+  box-shadow: 0 0 28px rgba(255, 88, 172, 0.2), inset 0 0 18px rgba(255, 255, 255, 0.08);
+  font-size: clamp(13px, 2vw, 24px);
+  letter-spacing: 0.14em;
+  backdrop-filter: blur(6px);
+  animation: softGlow 3.2s ease-in-out infinite;
+}
+
+.timer {
+  position: absolute;
+  right: clamp(14px, 2.5vw, 32px);
+  bottom: clamp(14px, 2.5vw, 32px);
+  z-index: 4;
+  min-width: 116px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.08em;
+  user-select: none;
+}
+
+.restart {
+  position: absolute;
+  left: clamp(14px, 2.5vw, 32px);
+  bottom: clamp(14px, 2.5vw, 32px);
+  z-index: 4;
+  border: 1px solid rgba(255, 183, 223, 0.38);
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: rgba(255, 246, 251, 0.88);
+  background: rgba(255, 82, 169, 0.12);
+  box-shadow: 0 0 22px rgba(255, 86, 170, 0.16);
+  font: 600 14px/1 "Microsoft YaHei", system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.restart:hover,
+.restart:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 210, 235, 0.72);
+  background: rgba(255, 82, 169, 0.2);
+  outline: none;
+}
+
+
+
+
+.curtain-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 40, 130, 0.11), transparent 18%, transparent 82%, rgba(255, 40, 130, 0.11)),
+    radial-gradient(ellipse at center, transparent 47%, rgba(0, 0, 0, 0.48) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.48;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 260% 50%; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.02); }
+  58% { transform: scale(1.01); }
+}
+
+@keyframes floatText {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -10px); }
+}
+
+@keyframes softGlow {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .message-wrap { top: clamp(28px, 7vh, 72px); }
+  .subtitle { letter-spacing: 0.08em; }
+  .timer,
+  .restart {
+    font-size: 12px;
+    padding: 9px 12px;
+  }
+}
