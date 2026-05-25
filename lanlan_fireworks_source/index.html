@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>烟花幕布</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="stage" aria-label="无限循环烟花惊喜幕布">
+    <canvas id="scene" width="2560" height="1440"></canvas>
+    <div class="curtain-vignette" aria-hidden="true"></div>
+    <section class="message-wrap" aria-live="polite">
+      <h1 class="message">兰儿，辛苦啦，加油哈~~</h1>
+      <div class="subtitle">所有的星光、玫瑰和掌声都送给你</div>
+    </section>
+    <button class="restart" id="restart" type="button">从头播放</button>
+    <div class="timer" id="timer">循环播放</div>
+  </main>
+  <script src="./fireworks.js"></script>
+</body>
+</html>
